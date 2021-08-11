@@ -1,16 +1,6 @@
 class Cryptocurrency(object):
-    def __init__(self, name, amount):
+    def __init__(self, id, symbol, name, price):
+        self.id = id
+        self.symbol = symbol
         self.name = name
-        self.amount = amount
-        
-def set_name(self,name):
-    self.name = name
-
-def set_amount(self, amount):
-    self.amount = amount
-
-def get_name(self,name):
-    return self.name
-
-def get_amount(self,amount):
-    return self.amount
+        self.price = price

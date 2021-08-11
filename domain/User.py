@@ -2,6 +2,7 @@ class User:
     def __init__(self, id):
         self.id = id
         self.cryptocurrencys = []
+        self.name = "Anonymous"
         
     def set_id(self, id):
         self.id = id
