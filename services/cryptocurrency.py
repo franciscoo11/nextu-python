@@ -1,12 +1,13 @@
 import requests
 import json
-from domain.cryptocurrency import Cryptocurrency
+from domain.Cryptocurrency import Cryptocurrency
 
 
 def get_cryptocurrencies():
+    key_coinmarket = "855cf8de-ff65-416f-8b81-390304275745"
     headers = {  
         'Accepts': 'application/json',  
-        'X-CMC_PRO_API_KEY':  '855cf8de-ff65-416f-8b81-390304275745'
+        'X-CMC_PRO_API_KEY':  key_coinmarket
     }
     params = {}
     response =  requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",headers=headers,params=params)
@@ -21,4 +22,24 @@ def get_cryptocurrencies():
     print(currencies)
     return currencies
 
-get_cryptocurrencies()
+# REALIZA UN DICT KEY -> NAME, VALUE -> PRECIO EN USD DE COINMARKETCAP.
+def get_cryptonamesandprices():
+    key_coinmarket = "2448e9c9-b938-4f0e-85f1-9878a7b41c87"
+    headers = {  
+        'Accepts': 'application/json',  
+        'X-CMC_PRO_API_KEY':  key_coinmarket
+    }
+
+    data = requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",headers=headers).json()
+    currencies_CMC = {}
+   
+    for cripto in data["data"]:
+        currencies_CMC[cripto["name"].lower()] = float(cripto["quote"]["USD"]["price"])
+        
+    return currencies_CMC
+    
+    
+
+
+
+

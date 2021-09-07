@@ -34,7 +34,6 @@ def menu(user):
         elif options == menu_options.HISTORYC_TRANSACTIONS.value:
             print("Funcion Historial de transacciones")
         else:
-            print("Funcion Salir")
             break
 
 
