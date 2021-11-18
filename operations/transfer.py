@@ -6,7 +6,7 @@ def transfer():
     is_currency_valid = False
     while not is_currency_valid:
         currency = input("Ingrese el simbolo de la criptomoneda a transferir: ").lower()
-        is_currency_valid = is_supported_currency(currency)
+        is_currency_valid = is_supported_currency(currency) 
     is_mount_valid = False
     while not is_mount_valid:
          mount = input("Ingrese la cantidad de la moneda: ").replace(",",".",1)
@@ -15,7 +15,6 @@ def transfer():
     while not is_id_valid:
         id = input("Ingrese el ID correspondiente al destinatario: ")
         is_id_valid = validate_id(id,logged_user)
-    register_transaction(logged_user.get_id(), currency,)
 
       
 def isa_float(mount):

@@ -2,7 +2,6 @@ import requests
 import json
 from domain.Cryptocurrency import Cryptocurrency
 
-
 def get_cryptocurrencies():
     key_coinmarket = "855cf8de-ff65-416f-8b81-390304275745"
     headers = {  
