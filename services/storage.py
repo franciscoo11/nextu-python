@@ -1,6 +1,4 @@
 from datetime import datetime
-
-from requests import NullHandler
 from domain.Cryptobalance import *
 
 transactions_file = "transactions.txt"
