@@ -1,10 +1,12 @@
-from services.cryptocurrency import get_cryptonamesandprices
+from services.cryptocurrency import get_cryptonamesandprices, get_price, is_supported_currency
 from main import logged_user 
+from services.storage import register_transaction
+
 def transfer():
     is_currency_valid = False
     while not is_currency_valid:
-        currency = input("Ingrese la moneda que desea transferir: ").lower()
-        is_currency_valid = validate_namesexist(currency)
+        currency = input("Ingrese el simbolo de la criptomoneda a transferir: ").lower()
+        is_currency_valid = is_supported_currency(currency)
     is_mount_valid = False
     while not is_mount_valid:
          mount = input("Ingrese la cantidad de la moneda: ").replace(",",".",1)
@@ -13,18 +15,9 @@ def transfer():
     while not is_id_valid:
         id = input("Ingrese el ID correspondiente al destinatario: ")
         is_id_valid = validate_id(id,logged_user)
-        
-        
+    register_transaction(logged_user.get_id(), currency,)
 
-
-
-    
-
-# Validar que::
-#       currency no es vacio
-#       currency es soportado
       
-
 def isa_float(mount):
     try:
         float(mount)
@@ -32,10 +25,6 @@ def isa_float(mount):
     except ValueError:
         print("El dato ingresado no es un numero.")
         return False
-
-
-def validate_namesexist(msj):
-    return msj in get_cryptonamesandprices()
 
 def validate_id(id, logged_user):
     try:
@@ -48,6 +37,4 @@ def validate_id(id, logged_user):
     except ValueError:
         print("El dato ingresado no es un numero valido.")
         return False
-
-
 
