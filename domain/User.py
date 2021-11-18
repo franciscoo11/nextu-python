@@ -1,17 +1,10 @@
-class User:
+class User(object):
     def __init__(self, id):
         self.id = id
-        self.cryptocurrencys = []
-        self.name = "Anonymous"
         
-    def set_id(self, id):
-        self.id = id
-
     def get_id(self):
         return self.id
 
-    def get_msj(self):
-        return 'hola'
 
 
 

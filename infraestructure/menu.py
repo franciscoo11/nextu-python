@@ -1,9 +1,10 @@
-from enumerations.menu_options import menu_options
+from enumerations import menu_options
 from operations.transfer import transfer
-from datetime import datetime   
+from datetime import datetime 
+import sys
 day = datetime.now()
 
-def menu(user):
+def menu():
     exit_program = False
     request_options = True
     while not exit_program:
@@ -26,7 +27,7 @@ def menu(user):
         if options == menu_options.TRANSFER.value:
             transfer()
         elif options == menu_options.RECIVE.value:
-            print("Funcion recive")
+            print("Funcion Recibir moneda")
         elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:
             print("Funcion Balance por moneda")
         elif options == menu_options.GENERAL_BALANCE.value:
@@ -34,14 +35,14 @@ def menu(user):
         elif options == menu_options.HISTORYC_TRANSACTIONS.value:
             print("Funcion Historial de transacciones")
         else:
-            break
+            sys.exit()
 
 
 
 def continue_inprogram():
     continuar= ""
     while continuar != "S":
-        continuar = str(input("Desea continuar (S/N")).upper()
+        continuar = str(input("Desea continuar en el programa (S/N")).upper()
         if continuar == "S":
             menu()
         else:

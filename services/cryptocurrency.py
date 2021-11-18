@@ -38,6 +38,7 @@ def get_cryptonamesandprices():
         
     return currencies_CMC
     
+
     
 
 
