@@ -16,15 +16,15 @@ def balance_register(moneda,logged_user,amount):
     archivo.write(moneda+ "|" + logged_user + "|" + str(amount) + "|" + "\n")
     archivo.close()
 
+    
 def get_currencies_balance(user_id, symbol):
     balance_file = open(storage_folder+"/"+user_id+"/"+"balance.txt", 'r')
     txt = balance_file.read()
     balance_file.close()
     criptos_balance = []
-    separators = txt.split("|")
+    separators = txt.split("|") 
     for line in txt.splitlines():
-        separator = line.split("|")
-        newCryptobalance = Cryptobalance(separator[0],separator[1])
+        newCryptobalance = parse_reg(line)
         criptos_balance.append(newCryptobalance)
 
     return criptos_balance
@@ -37,12 +37,17 @@ def get_currencye_amount(user_id,symbol):
     return None
 
 def update_currencye_balance(criptobalance,user_id,amount):
-    txt = f'{criptobalance} "|" {str(amount)} \n'
     balance_file = open(storage_folder+"/"+user_id+"/"+"balance.txt", 'w')
     lines = balance_file.readlines()
     for line in lines:
-        if line == criptobalance:
-            balance_file.write(txt)
-        else:
-            balance_file.write(txt)
+        if criptobalance in line:
+            newCryptobalance = parse_reg(line)
+            line.replace(f'{newCryptobalance.symbol} "|" {newCryptobalance.amount - amount} \n')
+        
 
+def parse_reg(register):
+    separator = register.split("|")
+    return Cryptobalance(separator[0],separator[1])
+    
+
+    

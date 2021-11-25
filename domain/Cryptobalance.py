@@ -4,15 +4,8 @@ class Cryptobalance(object):
         self.amount = amount
 
 
-def set_amount (self,amount):
-    self.amount = amount
+def add_amount (self,amount):
+    self.amount += amount
 
-def get_amount(self):
-    return self.amount
-
-def set_symbol(self, symbol):
-    self.symbol = symbol
-
-def get_symbol(self):
-    return self.symbol
+#cambiar nombre parametro metodo add_amount
 

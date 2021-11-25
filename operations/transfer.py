@@ -1,5 +1,5 @@
 from services.cryptocurrency import get_cryptonamesandprices, get_price, is_supported_currency
-from main import logged_user 
+from main import logged_user
 from services.storage import register_transaction
 
 def transfer():
@@ -14,7 +14,7 @@ def transfer():
     is_id_valid = False
     while not is_id_valid:
         id = input("Ingrese el ID correspondiente al destinatario: ")
-        is_id_valid = validate_id(id,logged_user)
+        is_id_valid = validate_id(id,logged_user.get_id())
 
       
 def isa_float(mount):

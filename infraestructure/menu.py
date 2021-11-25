@@ -1,8 +1,7 @@
 from enumerations import menu_options
 from operations.transfer import transfer
-from datetime import datetime 
 import sys
-day = datetime.now()
+
 
 def menu():
     exit_program = False
@@ -25,7 +24,8 @@ def menu():
                 request_options = False
                 
         if options == menu_options.TRANSFER.value:
-            transfer()
+            transfer() 
+            print("Funcion transfer")
         elif options == menu_options.RECIVE.value:
             print("Funcion Recibir moneda")
         elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:
