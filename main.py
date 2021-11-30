@@ -1,4 +1,4 @@
-from infraestructure import menu
+from infraestructure.menu import menu
 from domain.User import User
 
 
@@ -11,5 +11,5 @@ print("\n Bienvenido/a a tu billetera virtual de escritorio \n")
 # Setear usuario
 # Por codigo (hardcodeado) o autenticacion
 logged_user = User(1)
-menu()
+menu(logged_user)
 

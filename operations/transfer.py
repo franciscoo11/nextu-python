@@ -1,8 +1,7 @@
 from services.cryptocurrency import get_cryptonamesandprices, get_price, is_supported_currency
-from main import logged_user
 from services.storage import register_transaction
 
-def transfer():
+def transfer(logged_user):
     is_currency_valid = False
     while not is_currency_valid:
         currency = input("Ingrese el simbolo de la criptomoneda a transferir: ").lower()

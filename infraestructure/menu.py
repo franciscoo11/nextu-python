@@ -1,9 +1,9 @@
-from enumerations import menu_options
+from enumerations.menu_options import menu_options
 from operations.transfer import transfer
 import sys
 
 
-def menu():
+def menu(logged_user):
     exit_program = False
     request_options = True
     while not exit_program:
@@ -24,7 +24,7 @@ def menu():
                 request_options = False
                 
         if options == menu_options.TRANSFER.value:
-            transfer() 
+            transfer(logged_user) 
             print("Funcion transfer")
         elif options == menu_options.RECIVE.value:
             print("Funcion Recibir moneda")
