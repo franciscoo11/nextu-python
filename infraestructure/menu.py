@@ -24,8 +24,7 @@ def menu(logged_user):
                 request_options = False
                 
         if options == menu_options.TRANSFER.value:
-            transfer(logged_user) 
-            print("Funcion transfer")
+            transfer(logged_user)
         elif options == menu_options.RECIVE.value:
             print("Funcion Recibir moneda")
         elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:

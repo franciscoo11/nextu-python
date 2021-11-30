@@ -13,7 +13,7 @@ def transfer(logged_user):
     is_id_valid = False
     while not is_id_valid:
         id = input("Ingrese el ID correspondiente al destinatario: ")
-        is_id_valid = validate_id(id,logged_user.get_id())
+        is_id_valid = validate_id(id,logged_user)
 
       
 def isa_float(mount):
@@ -26,8 +26,7 @@ def isa_float(mount):
 
 def validate_id(id, logged_user):
     try:
-        int(id)
-        if id != logged_user.get_id():
+        if int(id) != logged_user.get_id():
             return True
         else:
             print(f'El id a transferir no puede ser el mismo al suyo.')
