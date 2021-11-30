@@ -1,4 +1,4 @@
-class Cryptocurrency(object):
+class Cryptocurrency:
     def __init__(self, id, symbol, name, price,quantity):
         self.id = id
         self.symbol = symbol

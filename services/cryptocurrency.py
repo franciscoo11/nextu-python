@@ -33,7 +33,7 @@ def get_cryptonamesandprices():
     currencies_CMC = {}
    
     for cripto in data["data"]:
-        currencies_CMC[cripto["symbol"].lower()] = float(cripto["quote"]["USD"]["price"])
+        currencies_CMC[cripto["symbol"]] = float(cripto["quote"]["USD"]["price"])
         
     return currencies_CMC
 

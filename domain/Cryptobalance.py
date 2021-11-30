@@ -1,4 +1,4 @@
-class Cryptobalance(object):
+class Cryptobalance:
     def __init__(self, symbol, amount):
         self.symbol = symbol
         self.amount = amount
