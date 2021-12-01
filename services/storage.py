@@ -21,9 +21,11 @@ def line_balance_register(logged_user,symbol,amount):
 def get_currencies_balance(user_id, symbol):
     balance_file = open(f'{folder}/user{user_id}/balance.txt', 'r')
     txt = balance_file.read()
+    file_size = os.path.getsize(f'{folder}/user{user_id}/balance.txt')
+    if file_size == 0:
+        return {}
     balance_file.close()
     criptos_balance = {}
-    separators = txt.split("|") 
     for line in txt.splitlines():
         newCryptobalance = parse_reg(line)
         criptos_balance[newCryptobalance.symbol] = newCryptobalance

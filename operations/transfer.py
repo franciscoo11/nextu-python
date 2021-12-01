@@ -16,9 +16,7 @@ def transfer(logged_user):
     while not is_id_valid:
         id_recive = input("Ingrese el ID correspondiente al destinatario: ")
         is_id_valid = validate_id(id_recive,logged_user)
-    send(logged_user.id,id_recive,float(mount),currency)    
-
-    
+    send(logged_user.id,id_recive,float(mount),currency)
       
 def isa_float(mount):
     try:
@@ -38,4 +36,3 @@ def validate_id(id, logged_user):
     except ValueError:
         print("El dato ingresado no es un numero valido.")
         return False
-

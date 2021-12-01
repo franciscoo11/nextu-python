@@ -1,5 +1,6 @@
 from enumerations.menu_options import menu_options
 from operations.transfer import transfer
+from operations.receive import receive
 import sys
 
 
@@ -26,7 +27,7 @@ def menu(logged_user):
         if options == menu_options.TRANSFER.value:
             transfer(logged_user)
         elif options == menu_options.RECIVE.value:
-            print("Funcion Recibir moneda")
+            receive(logged_user)
         elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:
             print("Funcion Balance por moneda")
         elif options == menu_options.GENERAL_BALANCE.value:
@@ -37,7 +38,6 @@ def menu(logged_user):
             sys.exit()
 
 
-
 def continue_inprogram():
     continuar= ""
     while continuar != "S":
@@ -46,7 +46,6 @@ def continue_inprogram():
             menu()
         else:
             exit()
-
 
             
 

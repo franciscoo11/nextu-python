@@ -12,15 +12,18 @@ def send(user_id,user_id_destine,amount,symbol):
     criptobalance = get_criptobalance(user_id,symbol)
     criptobalance.send(amount)
     update_amount_balance(user_id,criptobalance)
-    receive(user_id_destine, amount, symbol)
+    op_receive(user_id_destine, amount, symbol)
     
-def receive(user_id, amount, symbol):
+def op_receive(user_id, amount, symbol):
     now = datetime.now()
     value = float(amount)*float(get_price(symbol))
     date = str(now.strftime("%d de %B de %Y"))
     register_transaction(date,user_id, symbol, amount, get_price(symbol))
     criptobalance = get_criptobalance(user_id,symbol)
-    criptobalance.receive(amount)
+    if criptobalance == None:
+        criptobalance = Cryptobalance(symbol,amount)
+    else:
+        criptobalance.receive(amount)
     update_amount_balance(user_id,criptobalance)
         
         
