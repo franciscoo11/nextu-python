@@ -1,2 +1,2 @@
-BTC|3
-ETH|4 BTC|1|2|
+ETH|4
+BTC|3.0 

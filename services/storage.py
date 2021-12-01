@@ -1,24 +1,20 @@
 from datetime import datetime
 from domain.Cryptobalance import *
 import os
-transactions_file = "transactions.txt"
-balance_file = "balance.txt"
 storage_folder = "../storage"
-historic_file = "transactions.txt"
 script_dir = os.path.dirname(os.path.abspath(__file__))
 folder = os.path.join(script_dir, storage_folder)
 
 
 def register_transaction(date,user_id,currency,amount,price):
-    archivo=open(f'{folder}/user{user_id}/+historic_file', 'a+')
-    archivo.write(f'{date}|{currency}|{user_id}|{str(amount)}|{str(price)}')
+    archivo=open(f'{folder}/user{user_id}/historic_file', 'a+')
+    archivo.write(f'{date}|{currency}|{user_id}|{str(amount)}|{str(price)} \n')
     archivo.close()
 
-def balance_register(logged_user,cryptobalance):
-    archivo=open(f'{folder}/user{logged_user}/balance.txt','a+')
-    if cryptobalance.symbol in archivo:
-        line =    
-    archivo.write(f'{moneda}|{logged_user}|{str(amount)}|')
+def line_balance_register(logged_user,symbol,amount):
+    newCriptobalance = Cryptobalance(symbol,amount)
+    archivo=open(f'{folder}/user{logged_user}/balance.txt','a+') 
+    archivo.write(f'{newCriptobalance.symbol}|{newCriptobalance.amount}')
     archivo.close()
 
     
@@ -41,34 +37,21 @@ def get_currencye_amount(user_id,symbol):
 
     return 0
 
-def update_currencye_balance(criptobalance,user_id,amount):
-    reading_file = open(f'{folder}/user{user_id}/balance.txt', 'r')
-    new_content = ""
-    for line in reading_file:
-        if criptobalance in line:
-            new_content += make_balance_reg
-
-
-
-    
-    
-    
-    
-    
-    
-    lines = balance_file.readlines()
-    for line in lines:
-        if criptobalance in line:
-            newCryptobalance = parse_reg(line)
-            line.replace(f'{newCryptobalance.symbol}|{newCryptobalance.amount - amount}')
-        
 
 def parse_reg(register):
     separator = register.split("|")
     return Cryptobalance(separator[0],float(separator[1]))
 
 def make_balance_reg(criptobalance):
-    return (f'{criptobalance.symbol}|{criptobalance.amount}')
+    return (f'{criptobalance.symbol}|{criptobalance.amount} \n')
     
-
+def get_obj(symbol,amount):
+    newCriptobalance = Cryptobalance(symbol,amount)
+    return newCriptobalance
     
+def get_criptobalance(user_id,symbol):
+    balance = get_currencies_balance(user_id,symbol)
+    if symbol in balance:
+        return balance[symbol]
+    else:
+        return None

@@ -1,11 +1,9 @@
 class Cryptobalance:
-    def __init__(self, symbol, amount):
+    def __init__(self, symbol, amount:float):
         self.symbol = symbol
         self.amount = amount
-
-
-def add_amount (self,amount):
-    self.amount += amount
-
-#cambiar nombre parametro metodo add_amount
-
+    
+    def receive (self,amount:float):
+        self.amount += amount
+    def send (self,amount):
+        self.amount -= amount

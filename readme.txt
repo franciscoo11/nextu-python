@@ -34,3 +34,23 @@ def mostrarBalance():
     for linea in lineas:
         termino = linea.split("|")
         print(termino[0] + "\t" + termino[1] + "\t\t")
+
+
+
+
+# Busco currency balance por simnbolo
+    # Actualizo el monto total de la moneda (cryptobalance.amount - amount)
+    # Llamamos a register_balance(user,cryptobalance) 
+
+def has_enough_balance(user_id,symbol,amount_trans):
+    if get_currencye_amount(user_id,symbol) == None and get_currencye_amount(user_id, symbol).amount < amount_trans:
+        return False
+    return True
+
+def currencie_in_balance(user_id,symbol):
+    open_file = open(f'{folder}/user{user_id}/balance.txt', 'r')
+    for line in open_file:
+        if symbol in line:
+            return True
+
+    return False
