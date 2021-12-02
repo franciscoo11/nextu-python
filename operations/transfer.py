@@ -1,7 +1,7 @@
 from services.cryptocurrency import get_cryptonamesandprices, get_price, is_supported_currency
 from services.storage import register_transaction, get_currencye_amount
 from services.transaction import send
-from infraestructure.menu import menu
+
 def transfer(logged_user):
     is_currency_valid = False
     while not is_currency_valid:
@@ -16,9 +16,7 @@ def transfer(logged_user):
     while not is_id_valid:
         id_recive = input("Ingrese el ID correspondiente al destinatario: ")
         is_id_valid = validate_id(id_recive,logged_user)
-    send(logged_user.id,id_recive,float(mount),currency)
-    continue_in_program = input(f'¿Quiere volver al menu? Ingrese S/N: ').upper()
-    menu(continue_in_program)    
+    send(logged_user.id,id_recive,float(mount),currency)   
       
 def isa_float(mount):
     try:
