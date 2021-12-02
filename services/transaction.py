@@ -13,6 +13,8 @@ def send(user_id,user_id_destine,amount,symbol):
     criptobalance.send(amount)
     update_amount_balance(user_id,criptobalance)
     op_receive(user_id_destine, amount, symbol)
+    continue_in_program = input(f'¿Quiere volver al menu? Ingrese S/N: ').upper()
+    menu(continue_in_program)
     
 def op_receive(user_id, amount, symbol):
     now = datetime.now()
@@ -25,7 +27,8 @@ def op_receive(user_id, amount, symbol):
     else:
         criptobalance.receive(amount)
     update_amount_balance(user_id,criptobalance)
-        
+    continue_in_program = input(f'¿Quiere volver al menu? Ingrese S/N: ').upper()
+    menu(continue_in_program)    
         
 def update_amount_balance(user_id,criptobalance):
     open_file = open(f'{folder}/user{user_id}/balance.txt', 'r')
@@ -49,5 +52,4 @@ def update_amount_balance(user_id,criptobalance):
     writing_file.write(new_Content)
     writing_file.close()
 
-    
     

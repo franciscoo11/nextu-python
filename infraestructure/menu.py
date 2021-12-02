@@ -3,11 +3,10 @@ from operations.transfer import transfer
 from operations.receive import receive
 import sys
 
-
-def menu(logged_user):
+def menu(logged_user,continue_in_program):
     exit_program = False
     request_options = True
-    while not exit_program:
+    while not exit_program and continue_in_program == "S":
         print(f"""
         {menu_options.TRANSFER.value} \t\tTransferir dinero
         {menu_options.RECIVE.value} \t\tRecibir dinero
@@ -37,15 +36,6 @@ def menu(logged_user):
         else:
             sys.exit()
 
-
-def continue_inprogram():
-    continuar= ""
-    while continuar != "S":
-        continuar = str(input("Desea continuar en el programa (S/N")).upper()
-        if continuar == "S":
-            menu()
-        else:
-            exit()
 
             
 

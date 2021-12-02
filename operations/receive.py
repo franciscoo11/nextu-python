@@ -19,3 +19,5 @@ def receive(logged_user):
          is_mount_valid = isa_float(mount) and currencie_amount >= float(mount)
     is_id_valid = False
     op_receive(logged_user.id,float(mount),currency)    
+    continue_in_program = input(f'¿Quiere volver al menu? Ingrese S/N: ').upper()
+    menu(continue_in_program)    
