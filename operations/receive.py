@@ -16,8 +16,5 @@ def receive(logged_user):
     currencie_amount = get_currencye_amount(int(id_recive),currency)
     while not is_mount_valid:
          mount = input("Ingrese la cantidad de la moneda: ").replace(",",".",1)
-         is_mount_valid = isa_float(mount) and currencie_amount >= float(mount)
-    is_id_valid = False
-    op_receive(logged_user.id,float(mount),currency)    
-    continue_in_program = input(f'¿Quiere volver al menu? Ingrese S/N: ').upper()
-    menu(continue_in_program)    
+         is_mount_valid = isa_float(mount) and currencie_amount >= float(mount) and currencie_amount != 0
+    op_receive(logged_user.id,float(mount),currency)

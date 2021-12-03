@@ -8,27 +8,23 @@ def send(user_id,user_id_destine,amount,symbol):
     now = datetime.now()
     value = float(amount)*float(get_price(symbol))
     date = str(now.strftime("%d de %B de %Y"))
-    register_transaction(date,user_id, symbol, amount, get_price(symbol))
+    register_transaction(date,user_id, symbol, amount, value)
     criptobalance = get_criptobalance(user_id,symbol)
     criptobalance.send(amount)
     update_amount_balance(user_id,criptobalance)
-    op_receive(user_id_destine, amount, symbol)
-    continue_in_program = input(f'¿Quiere volver al menu? Ingrese S/N: ').upper()
-    menu(continue_in_program)
+    op_receive(user_id_destine,amount, symbol)
     
-def op_receive(user_id, amount, symbol):
+def op_receive(user_id,amount, symbol):
     now = datetime.now()
     value = float(amount)*float(get_price(symbol))
     date = str(now.strftime("%d de %B de %Y"))
-    register_transaction(date,user_id, symbol, amount, get_price(symbol))
+    register_transaction(date,user_id, symbol, amount, value)
     criptobalance = get_criptobalance(user_id,symbol)
     if criptobalance == None:
         criptobalance = Cryptobalance(symbol,amount)
     else:
         criptobalance.receive(amount)
     update_amount_balance(user_id,criptobalance)
-    continue_in_program = input(f'¿Quiere volver al menu? Ingrese S/N: ').upper()
-    menu(continue_in_program)    
         
 def update_amount_balance(user_id,criptobalance):
     open_file = open(f'{folder}/user{user_id}/balance.txt', 'r')

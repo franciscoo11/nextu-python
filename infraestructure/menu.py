@@ -5,10 +5,9 @@ from operations.balance_general import show_general_balance
 from operations.balance_crypto import show_singular_balance
 import sys
 
-def menu(logged_user):
-    exit_program = False
+def menu(logged_user,show_menu):
     request_options = True
-    while not exit_program:
+    while show_menu == "S":
         print(f"""
         {menu_options.TRANSFER.value} \t\tTransferir dinero
         {menu_options.RECIVE.value} \t\tRecibir dinero
@@ -27,20 +26,23 @@ def menu(logged_user):
                 
         if options == menu_options.TRANSFER.value:
             transfer(logged_user)
+            show_menu = input ("¿Desea volver al menú principal?, escriba S/N: ").upper()
+            menu(logged_user,show_menu)
         elif options == menu_options.RECIVE.value:
             receive(logged_user)
+            show_menu = input ("¿Desea volver al menú principal?, escriba S/N: ").upper()
+            menu(logged_user,show_menu)
         elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:
             show_singular_balance(logged_user)
+            show_menu = input ("¿Desea volver al menú principal?, escriba S/N: ").upper()
+            menu(logged_user,show_menu)
         elif options == menu_options.GENERAL_BALANCE.value:
             show_general_balance(logged_user)
+            show_menu = input ("¿Desea volver al menú principal?, escriba S/N: ").upper()
+            menu(logged_user,show_menu)
         elif options == menu_options.HISTORYC_TRANSACTIONS.value:
             print("Funcion Historial de transacciones")
+            show_menu = input ("¿Desea volver al menú principal?, escriba S/N: ").upper()
+            menu(logged_user,show_menu)
         else:
             sys.exit()
-
-
-            
-
-def back_to_menu():
-    comeback_to_menu = input("Desea regresar al menu principal? INGRESE S/N: ").upper()
-    return comeback_to_menu

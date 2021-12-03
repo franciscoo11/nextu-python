@@ -23,7 +23,7 @@ def get_cryptocurrencies():
 
 # REALIZA UN DICT KEY -> NAME, VALUE -> PRECIO EN USD DE COINMARKETCAP.
 def get_cryptonamesandprices():
-    key_coinmarket = "2448e9c9-b938-4f0e-85f1-9878a7b41c87"
+    key_coinmarket = "855cf8de-ff65-416f-8b81-390304275745"
     headers = {  
         'Accepts': 'application/json',  
         'X-CMC_PRO_API_KEY':  key_coinmarket
