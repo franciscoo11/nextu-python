@@ -1,1 +1,0 @@
-fecha codigo usuario tipo de operacion moneda cantidad monto 
