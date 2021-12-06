@@ -6,9 +6,10 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 folder = os.path.join(script_dir, storage_folder)
 
 
-def register_transaction(date,user_id,currency,amount,price):
-    archivo=open(f'{folder}/user{user_id}/historic_file', 'a+')
-    archivo.write(f'{date}|{currency}|{user_id}|{str(amount)}|{str(price)} \n')
+def register_transaction(date,user_id,operation_type,symbol,amount,total_price):
+    formate_date = str(date.strftime("%d de %B de %Y"))
+    archivo=open(f'{folder}/user{user_id}/hystoric_file', 'a+')
+    archivo.write(f'{formate_date}|{symbol}|{user_id}|{operation_type}|{str(amount)}|{str(total_price)} \n')
     archivo.close()
 
 def line_balance_register(logged_user,symbol,amount):

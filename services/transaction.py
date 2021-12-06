@@ -4,27 +4,26 @@ from requests.api import get
 from services.cryptocurrency import get_price
 from services.storage import *
 
-def send(user_id,user_id_destine,amount,symbol):
-    now = datetime.now()
-    value = float(amount)*float(get_price(symbol))
-    date = str(now.strftime("%d de %B de %Y"))
-    register_transaction(date,user_id, symbol, amount, value)
-    criptobalance = get_criptobalance(user_id,symbol)
-    criptobalance.send(amount)
-    update_amount_balance(user_id,criptobalance)
-    op_receive(user_id_destine,amount, symbol)
+transfer_type = "TRANSFER"
+recept_type = "RECEIVE"
+
+def send(transaction):
+    transaction.total_price = float(transaction.amount)*float(get_price(transaction.symbol))
+    register_transaction(transaction.date,transaction.origin_id,transfer_type,transaction.symbol,transaction.amount,transaction.total_price)
+    criptobalance = get_criptobalance(transaction.origin_id,transaction.symbol)
+    criptobalance.send(transaction.amount)
+    update_amount_balance(transaction.origin_id,criptobalance)
+
     
-def op_receive(user_id,amount, symbol):
-    now = datetime.now()
-    value = float(amount)*float(get_price(symbol))
-    date = str(now.strftime("%d de %B de %Y"))
-    register_transaction(date,user_id, symbol, amount, value)
-    criptobalance = get_criptobalance(user_id,symbol)
+def receive(transaction):
+    transaction.total_price = float(transaction.amount)*float(get_price(transaction.symbol))
+    register_transaction(transaction.date,transaction.destination_id,recept_type,transaction.symbol,transaction.amount,transaction.total_price)
+    criptobalance = get_criptobalance(transaction.destination_id,transaction.symbol)
     if criptobalance == None:
-        criptobalance = Cryptobalance(symbol,amount)
+        criptobalance = Cryptobalance(transaction.symbol,transaction.amount)
     else:
-        criptobalance.receive(amount)
-    update_amount_balance(user_id,criptobalance)
+        criptobalance.receive(transaction.amount)
+    update_amount_balance(transaction.destination_id,criptobalance)
         
 def update_amount_balance(user_id,criptobalance):
     open_file = open(f'{folder}/user{user_id}/balance.txt', 'r')
@@ -49,3 +48,6 @@ def update_amount_balance(user_id,criptobalance):
     writing_file.close()
 
     
+def new_transaction(transaction):
+    send(transaction)
+    receive(transaction)

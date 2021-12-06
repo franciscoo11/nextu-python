@@ -1,6 +1,8 @@
 from services.cryptocurrency import get_cryptonamesandprices, get_price, is_supported_currency
 from services.storage import register_transaction, get_currencye_amount
-from services.transaction import send
+from services.transaction import *
+from domain.Transaction import *
+from datetime import *
 
 def transfer(logged_user):
     is_currency_valid = False
@@ -11,13 +13,14 @@ def transfer(logged_user):
     currencie_amount = get_currencye_amount(logged_user.id,currency)
     while not is_mount_valid:
          mount = input("Ingrese la cantidad de la moneda: ").replace(",",".",1)
-         is_mount_valid = isa_float(mount) and currencie_amount >= float(mount) and currencie_amount != 0
+         is_mount_valid = isa_float(mount) and currencie_amount >= float(mount) and currencie_amount > 0
     is_id_valid = False
     while not is_id_valid:
         id_recive = input("Ingrese el ID correspondiente al destinatario: ")
         is_id_valid = validate_id(id_recive,logged_user)
-    send(logged_user.id,id_recive,float(mount),currency)
-      
+    transaction = Transaction(logged_user.id,id_recive,transfer_type,currency,float(mount),float(mount)*get_price(currency),datetime.now())
+    new_transaction(transaction)
+
 def isa_float(mount):
     try:
         float(mount)

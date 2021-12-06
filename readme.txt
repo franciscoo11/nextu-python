@@ -42,3 +42,6 @@ def currencie_in_balance(user_id,symbol):
             return True
 
     return False
+
+
+# PENSAR EN UNA FORMA DE LOGGIN PARA INTERCAMBIAR ENTRE USUARIOS SIN SALIR DEL PROGRAMA E INICIAR SESION CON DIFERENTES ID'S.
