@@ -72,8 +72,7 @@ def last_userid():
     for line in lines:
         termino = line.split("|")
         x = termino[0]
-
-    return x
+    return x 
     
 def check_id_exist(user_id):
     users_file = open(f'{folder}/users.txt', 'r')
@@ -90,7 +89,6 @@ def check_id_pass(user_id,user_password):
     file.close()
     lines = txt.splitlines()
     terms = txt.split("|")
-    print(f'MONEDA | CANTIDAD | BALANCE')
     for line in lines:
         if user_id + '|' + user_password in line:
             return True

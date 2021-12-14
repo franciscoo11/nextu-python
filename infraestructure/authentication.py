@@ -1,6 +1,7 @@
 from services.storage import *
-from enumerations.menu_user import *
+from enumerations.loggin_options import *
 from infraestructure.menu import menu
+from domain.User import User
 import sys
 
 init_menu = "S"
@@ -34,24 +35,24 @@ def menu_user_authentication(logged_user):
 
 
 
-def end_sesion():
-    return input("¿Desea: ").upper()
-
-
-
-
 
 def register(logged_user):
     loggin_okey = False
     while not loggin_okey:
-        user_password = input("Ingrese su clave (MAYOR A 3 CARACTERES): ")
+        user_password = input("Ingrese su clave (MAYOR A 3 CARACTERES): ").upper()
         last_id = int(last_userid())
-        user_id = last_id + 1   
+        user_id = last_id + 1
         loggin_okey = validate_userid(user_id) and len(user_password) > 3
-    logged_user.id = user_id
+        if loggin_okey == False:
+            return_menu = input("Desea volver a ver el menu de inicio? INGRESE S/N:").upper()
+            if return_menu == "S":
+                menu_user_authentication(logged_user)
+        
+    logged_user = User(user_id)
     user_register(user_id,user_password)
     if loggin_okey == True:
-        print("Usted se ha registrado con exito! ")
+        print(f'Registro realizado con exito. Su id es: {user_id} y su password es {user_password}')
+        
     
 
 def validate_userid(user_id):
@@ -69,6 +70,11 @@ def start_sesion(logged_user):
         user_id = input("Ingrese su codigo de usuario: ")
         user_password = input("Ingrese su clave de 4 digitos: ").upper()
         loggin_okey = validate_userid(user_id) and len(user_password) == 4 and check_id_pass(user_id,user_password)  
-    logged_user.id = user_id
+        if loggin_okey == False:
+            return_menu = input("Desea volver a ver el menu de inicio? INGRESE S/N:").upper()
+            if return_menu == "S":
+                menu_user_authentication(logged_user)
+    logged_user = User(user_id)
     if loggin_okey == True:
         print("Usted ha iniciado sesion con exito! ")
+
