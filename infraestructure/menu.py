@@ -29,10 +29,12 @@ def menu(logged_user,back_to_menu):
                 
         if options == menu_options.TRANSFER.value:
             transfer(logged_user)
+            print("Se ha realizado la transferencia con exito!")
             back_to_menu = show_menu()
             menu(logged_user,back_to_menu)
         elif options == menu_options.RECIVE.value:
             receive(logged_user)
+            print("Se ha realizado la recepción con exito!")
             back_to_menu = show_menu()
             menu(logged_user,back_to_menu)
         elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:

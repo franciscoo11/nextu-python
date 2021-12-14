@@ -7,6 +7,6 @@ def show_singular_balance(user_id):
     while not is_currency_valid:
         currency = input("Ingrese el simbolo de la criptomoneda que desea conocer su balance: ").upper()
         is_currency_valid = is_supported_currency(currency) 
-    cripto_amount = get_currencye_amount(user_id.id,currency)
-    cripto_price = get_price(currency)
-    print(f'Usted tiene {cripto_amount} de la moneda {currency} y su balance es: {cripto_price * cripto_amount}')
+    crypto_amount = get_currencye_amount(user_id.id,currency)
+    crypto_price = get_price(currency)
+    print(f'Usted tiene {crypto_amount} de la moneda {currency} y su balance es: {crypto_price * crypto_amount}')

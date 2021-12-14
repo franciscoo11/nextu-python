@@ -14,14 +14,14 @@ def register_transaction(date,user_id,operation_type,symbol,amount,total_price):
 
 def line_balance_register(logged_user,symbol,amount):
     newCriptobalance = Cryptobalance(symbol,amount)
-    archivo=open(f'{folder}/user{logged_user}/balance.txt','a+') 
-    archivo.write(f'{newCriptobalance.symbol}|{newCriptobalance.amount}')
-    archivo.close()
+    file=open(f'{folder}/user{logged_user}/balance.txt','a+') 
+    file.write(f'{newCriptobalance.symbol}|{newCriptobalance.amount}')
+    file.close()
 
-def user_register(user_id,user_password):
-    archivo=open(f'{folder}/users.txt', 'a+')
-    archivo.write(f'{user_id}|{user_password}\n')
-    archivo.close()
+def user_registration(user_id,user_password):
+    file=open(f'{folder}/users.txt', 'a+')
+    file.write(f'{user_id}|{user_password}\n')
+    file.close()
     
 def get_currencies_balance(user_id, symbol):
     balance_file = open(f'{folder}/user{user_id}/balance.txt', 'r')

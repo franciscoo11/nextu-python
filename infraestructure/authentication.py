@@ -34,7 +34,7 @@ def menu_user_authentication():
 
 
 
-
+##VER POSIBILIDAD DE MULTIPLES RETORNOS PARA QUE NO SE HAGAN CAPAS INFINITAS.
 
 
 def register():
@@ -52,7 +52,7 @@ def register():
     create_a_folder(logged_user.id)
     create_filebalance(logged_user.id)
     create_filehystoric(logged_user.id)
-    user_register(user_id,user_password)
+    user_registration(user_id,user_password)
     if loggin_okey == True:
         print(f'Registro realizado con exito. Su id es: {user_id} y su password es {user_password}')
     return logged_user
