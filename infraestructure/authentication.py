@@ -1,0 +1,74 @@
+from services.storage import *
+from enumerations.menu_user import *
+from infraestructure.menu import menu
+import sys
+
+init_menu = "S"
+def menu_user_authentication(logged_user):
+    open_menu = True
+    request_options = True
+    while open_menu:
+        print(f"""
+        {menu_user_options.REGISTER.value} \t\tREGISTRARSE
+        {menu_user_options.START_SESION.value} \t\tINICIAR SESION
+        """)
+        while request_options:
+            options = int(input("Ingrese una opcion: "))
+            if options < 1 or options > 2:
+                print("La opcion ingresada es invalida")
+            else:
+                request_options = False
+                
+        if options == menu_user_options.START_SESION.value:
+            start_sesion(logged_user)
+            print("Bienvenido de nuevo! Nos alegra volverte a ver..")
+            menu(logged_user,init_menu)
+        elif options == menu_user_options.REGISTER.value:
+            register(logged_user)
+            print("Usuario registrado ")
+            menu(logged_user,init_menu)
+        else:
+            sys.exit()
+
+
+
+
+
+def end_sesion():
+    return input("¿Desea: ").upper()
+
+
+
+
+
+def register(logged_user):
+    loggin_okey = False
+    while not loggin_okey:
+        user_password = input("Ingrese su clave (MAYOR A 3 CARACTERES): ")
+        last_id = int(last_userid())
+        user_id = last_id + 1   
+        loggin_okey = validate_userid(user_id) and len(user_password) > 3
+    logged_user.id = user_id
+    user_register(user_id,user_password)
+    if loggin_okey == True:
+        print("Usted se ha registrado con exito! ")
+    
+
+def validate_userid(user_id):
+    try:
+        int(user_id)
+        return True
+        
+    except ValueError:
+        print("El dato ingresado no es un numero valido.")
+        return False
+
+def start_sesion(logged_user):
+    loggin_okey = False
+    while not loggin_okey:
+        user_id = input("Ingrese su codigo de usuario: ")
+        user_password = input("Ingrese su clave de 4 digitos: ").upper()
+        loggin_okey = validate_userid(user_id) and len(user_password) == 4 and check_id_pass(user_id,user_password)  
+    logged_user.id = user_id
+    if loggin_okey == True:
+        print("Usted ha iniciado sesion con exito! ")

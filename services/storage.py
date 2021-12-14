@@ -18,6 +18,10 @@ def line_balance_register(logged_user,symbol,amount):
     archivo.write(f'{newCriptobalance.symbol}|{newCriptobalance.amount}')
     archivo.close()
 
+def user_register(user_id,user_password):
+    archivo=open(f'{folder}/users.txt', 'a+')
+    archivo.write(f'{user_id}|{user_password} \n')
+    archivo.close()
     
 def get_currencies_balance(user_id, symbol):
     balance_file = open(f'{folder}/user{user_id}/balance.txt', 'r')
@@ -58,3 +62,37 @@ def get_criptobalance(user_id,symbol):
         return balance[symbol]
     else:
         return None
+
+def last_userid():
+    file = open(f'{folder}/users.txt', 'r')
+    txt = file.read()
+    file.close()
+    lines = txt.splitlines()
+    terms = txt.split("|")
+    for line in lines:
+        termino = line.split("|")
+        x = termino[0]
+
+    return x
+    
+def check_id_exist(user_id):
+    users_file = open(f'{folder}/users.txt', 'r')
+    found = False
+    for line in users_file:
+        if user_id in line:
+            found = True
+            break
+    return found
+
+def check_id_pass(user_id,user_password):
+    file = open(f'{folder}/users.txt', 'r')
+    txt = file.read()
+    file.close()
+    lines = txt.splitlines()
+    terms = txt.split("|")
+    print(f'MONEDA | CANTIDAD | BALANCE')
+    for line in lines:
+        if user_id + '|' + user_password in line:
+            return True
+
+    return False
