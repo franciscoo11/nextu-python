@@ -8,5 +8,5 @@ print("\n Bienvenido/a a tu billetera virtual de escritorio \n")
 
 # Setear usuario
 # Por codigo (hardcodeado) o autenticacion
-logged_user = None
-menu_user_authentication(logged_user)
+
+menu_user_authentication()

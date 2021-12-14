@@ -20,7 +20,7 @@ def line_balance_register(logged_user,symbol,amount):
 
 def user_register(user_id,user_password):
     archivo=open(f'{folder}/users.txt', 'a+')
-    archivo.write(f'{user_id}|{user_password} \n')
+    archivo.write(f'{user_id}|{user_password}\n')
     archivo.close()
     
 def get_currencies_balance(user_id, symbol):
@@ -90,7 +90,19 @@ def check_id_pass(user_id,user_password):
     lines = txt.splitlines()
     terms = txt.split("|")
     for line in lines:
-        if user_id + '|' + user_password in line:
+        if user_id + '|' + user_password == line:
             return True
 
     return False
+
+def create_a_folder(user_id):
+    if not os.path.exists(f'{folder}/user{user_id}'):
+        os.makedirs(f'{folder}/user{user_id}')
+
+def create_filebalance(user_id):
+    file = open(f'{folder}/user{user_id}/balance.txt', 'w+')
+    file.close()
+
+def create_filehystoric(user_id):
+    file = open(f'{folder}/user{user_id}/hystoric_file.txt', 'w+')
+    file.close()

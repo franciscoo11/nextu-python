@@ -9,6 +9,8 @@ def transfer(logged_user):
     while not is_currency_valid:
         currency = input("Ingrese el simbolo de la criptomoneda a transferir: ").upper()
         is_currency_valid = is_supported_currency(currency) 
+        if not is_currency_valid:
+            print("La moneda ingresada no es valida.")
     is_mount_valid = False
     currencie_amount = get_currencye_amount(logged_user.id,currency)
     while not is_mount_valid:
