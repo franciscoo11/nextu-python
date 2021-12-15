@@ -31,23 +31,33 @@ def menu(logged_user,back_to_menu):
             transfer(logged_user)
             print("Se ha realizado la transferencia con exito!")
             back_to_menu = show_menu()
+            if back_to_menu == "N":
+                sys.exit()
             menu(logged_user,back_to_menu)
         elif options == menu_options.RECIVE.value:
             receive(logged_user)
             print("Se ha realizado la recepción con exito!")
             back_to_menu = show_menu()
+            if back_to_menu == "N":
+                sys.exit()
             menu(logged_user,back_to_menu)
         elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:
             show_singular_balance(logged_user)
             back_to_menu = show_menu()
+            if back_to_menu == "N":
+                sys.exit()
             menu(logged_user,back_to_menu)
         elif options == menu_options.GENERAL_BALANCE.value:
             show_general_balance(logged_user)
             back_to_menu = show_menu()
+            if back_to_menu == "N":
+                sys.exit()
             menu(logged_user,back_to_menu)
         elif options == menu_options.HISTORYC_TRANSACTIONS.value:
             transaction_history(logged_user)
             back_to_menu = show_menu()
+            if back_to_menu == "N":
+                sys.exit()
             menu(logged_user,back_to_menu)
         else:
             sys.exit()

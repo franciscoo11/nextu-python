@@ -45,9 +45,7 @@ def register():
         user_id = last_id + 1
         loggin_okey = validate_userid(user_id) and len(user_password) > 3
         if loggin_okey == False:
-            return_menu = input("Desea volver a ver el menu de inicio? INGRESE S/N:").upper()
-            if return_menu == "S":
-                menu_user_authentication()
+            back_to_menu()
     logged_user = User(user_id)
     create_a_folder(logged_user.id)
     create_filebalance(logged_user.id)
@@ -55,6 +53,7 @@ def register():
     user_registration(user_id,user_password)
     if loggin_okey == True:
         print(f'Registro realizado con exito. Su id es: {user_id} y su password es {user_password}')
+        
     return logged_user
     
 
@@ -74,12 +73,15 @@ def start_sesion():
         user_password = input("Ingrese su clave mayor a 3 digitos: ").upper()
         loggin_okey = validate_userid(user_id) and len(user_password) > 3 and check_id_pass(user_id,user_password)  
         if loggin_okey == False:
-            return_menu = input("Desea volver a ver el menu de inicio? INGRESE S/N:").upper()
-            if return_menu == "S":
-                menu_user_authentication()
+            back_to_menu()
     logged_user = User(user_id)
     if loggin_okey == True:
         print("Usted ha iniciado sesion con exito! ")
 
     return logged_user
+
+def back_to_menu():
+    back_to_options=input("Desea volver a ver el menu de inicio? INGRESE S/N:").upper()
+    if back_to_options == "S":
+        menu_user_authentication()
 
