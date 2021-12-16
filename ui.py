@@ -5,7 +5,6 @@ from operations.balance_general import show_general_balance
 from operations.balance_crypto import show_singular_balance
 from operations.transaction_history import transaction_history
 import sys
-from services.storage import register_transaction
 
 def menu(logged_user):
     print("Selecciona la operacion a realizar: ")

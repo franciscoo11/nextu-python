@@ -1,6 +1,3 @@
-from datetime import datetime
-from os import read, write
-from requests.api import get
 from services.cryptocurrency import get_price
 from services.storage import *
 

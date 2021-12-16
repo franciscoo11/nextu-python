@@ -28,7 +28,9 @@ def select_id(logged_user):
     is_id_valid = False
     while not is_id_valid:
         id_recive = input(f'Ingrese el ID del usuario: ')
-        is_id_valid = validate_id(id_recive,logged_user) and check_id_exist(id_recive) and int(id_recive) > 0
+        if validate_id(id_recive,logged_user)  == False:
+            continue
+        is_id_valid = check_id_exist(id_recive) and int(id_recive) > 0
         if is_id_valid == False:
             print("El id ingresado no es valido.")
 

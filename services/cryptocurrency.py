@@ -3,8 +3,6 @@ import json
 from domain.Cryptocurrency import Cryptocurrency
 import sys
 
-
-# REALIZA UN DICT KEY -> NAME, VALUE -> PRECIO EN USD DE COINMARKETCAP.
 def get_cryptonamesandprices():
     key_coinmarket = "855cf8de-ff65-416f-8b81-390304275745"
     headers = {  

@@ -1,13 +1,12 @@
-from datetime import datetime
 from domain.Cryptobalance import *
 import os
+
 storage_folder = "../storage"
 script_dir = os.path.dirname(os.path.abspath(__file__))
 folder = os.path.join(script_dir, storage_folder)
 
-
 def register_transaction(date,user_id,operation_type,symbol,amount,total_price):
-    formate_date = str(date.strftime("%d de %B de %Y"))
+    formate_date = str(date.strftime('%d/%m/%Y %H:%M:%S'))
     archivo=open(f'{folder}/user{user_id}/hystoric_file', 'a+')
     archivo.write(f'{formate_date}|{symbol}|{user_id}|{operation_type}|{str(amount)}|{str(total_price)} \n')
     archivo.close()

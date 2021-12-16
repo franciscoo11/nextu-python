@@ -1,6 +1,7 @@
 from operations.transfer import *
 from services.storage import get_currencye_amount
 from services.cryptocurrency import get_price
+
 def show_singular_balance(user_id):    
     is_currency_valid = False
     while not is_currency_valid:

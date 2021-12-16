@@ -1,6 +1,6 @@
 from services.storage import *
 from enumerations.loggin_options import *
-from infraestructure.menu import menu
+from ui import menu
 from domain.User import User
 import sys
 
@@ -70,7 +70,7 @@ def start_sesion():
         loggin_okey = validate_userid(user_id) and len(user_password) > 3 and check_id_pass(user_id,user_password) and len(user_id) > 0
         if loggin_okey == False:
             back_to_menu()
-    logged_user = User(user_id)
+    logged_user = User(int(user_id))
     if loggin_okey == True:
         print("Usted ha iniciado sesion con exito! ")
 
