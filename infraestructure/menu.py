@@ -7,17 +7,19 @@ from operations.transaction_history import transaction_history
 import sys
 from services.storage import register_transaction
 
-def menu(logged_user,back_to_menu):
+def menu(logged_user):
+    print("Selecciona la operacion a realizar: ")
+    back_to_menu = "S"
 
     request_options = True
     while back_to_menu == "S":
         print(f"""
-        {menu_options.TRANSFER.value} \t\tTransferir dinero
-        {menu_options.RECIVE.value} \t\tRecibir dinero
-        {menu_options.CRYPTOCURRENCY_BALANCE.value} \t\tBalance por moneda
-        {menu_options.GENERAL_BALANCE.value} \t\tBalance global
-        {menu_options.HISTORYC_TRANSACTIONS.value} \t\tHistorial de transacciones
-        {menu_options.EXIT_APP.value} \t\tSalir
+        {menu_options.TRANSFER.value} - Transferir dinero
+        {menu_options.RECIVE.value} - Recibir dinero
+        {menu_options.CRYPTOCURRENCY_BALANCE.value} - Balance por moneda
+        {menu_options.GENERAL_BALANCE.value} - Balance global
+        {menu_options.HISTORYC_TRANSACTIONS.value} - Historial de transacciones
+        {menu_options.EXIT_APP.value} - Salir
         """)
     
         while request_options:
@@ -25,40 +27,29 @@ def menu(logged_user,back_to_menu):
             if options == menu_options.TRANSFER.value:
                 transfer(logged_user)
                 print("Se ha realizado la transferencia con exito!")
-                back_to_menu = show_menu()
-                if back_to_menu == "N":
-                    sys.exit()
-                menu(logged_user,back_to_menu)
+                should_restart_menu(logged_user)
             elif options == menu_options.RECIVE.value:
                 receive(logged_user)
                 print("Se ha realizado la recepción con exito!")
-                back_to_menu = show_menu()
-                if back_to_menu == "N":
-                    sys.exit()
-                menu(logged_user,back_to_menu)
+                should_restart_menu(logged_user)
             elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:
                 show_singular_balance(logged_user)
-                back_to_menu = show_menu()
-                if back_to_menu == "N":
-                    sys.exit()
-                menu(logged_user,back_to_menu)
+                should_restart_menu(logged_user)
             elif options == menu_options.GENERAL_BALANCE.value:
                 show_general_balance(logged_user)
-                back_to_menu = show_menu()
-                if back_to_menu == "N":
-                    sys.exit()
-                menu(logged_user,back_to_menu)
+                should_restart_menu(logged_user)
             elif options == menu_options.HISTORYC_TRANSACTIONS.value:
                 transaction_history(logged_user)
-                back_to_menu = show_menu()
-                if back_to_menu == "N":
-                    sys.exit()
-                menu(logged_user,back_to_menu)
+                should_restart_menu(logged_user)
             elif options == menu_options.EXIT_APP.value:
                 sys.exit()
             else:
                 print("La opcion ingresada no es valida.")
 
 
-def show_menu():
-    return input("¿Desea volver al menú principal?, escriba S/N: ").upper()
+def should_restart_menu(logged_user):
+    back_to_menu = input("¿Desea volver al menú principal?, escriba S/N: ").upper()
+    if back_to_menu == "N":
+        sys.exit()
+    else:
+        menu(logged_user)
