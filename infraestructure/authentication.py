@@ -22,11 +22,9 @@ def menu_user_authentication():
                 
         if options == menu_user_options.START_SESION.value:
             logged_sesion = start_sesion()
-            print("Bienvenido de nuevo! Nos alegra volverte a ver..")
             menu(logged_sesion)
         elif options == menu_user_options.REGISTER.value:
             logged_register = register()
-            print("Usuario registrado ")
             menu(logged_register)
         else:
             sys.exit()

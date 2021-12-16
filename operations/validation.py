@@ -13,9 +13,9 @@ def select_currency():
 
     return currency
 
-def select_amount(id_recive,currency):
+def select_amount(id_receive,currency):
     is_mount_valid = False
-    currencie_amount = get_currencye_amount(int(id_recive),currency)
+    currencie_amount = get_currencye_amount(int(id_receive),currency)
     while not is_mount_valid:
          mount = input("Ingrese la cantidad de la moneda: ").replace(",",".",1)
          is_mount_valid = isa_float(mount) and currencie_amount >= float(mount) and currencie_amount > 0
