@@ -21,46 +21,43 @@ def menu(logged_user,back_to_menu):
         """)
     
         while request_options:
-            options = int(input("Ingrese una opcion: "))
-            if options < 1 or options > 6:
-                print("La opcion ingresada es invalida")
+            options = input("Ingrese una opcion: ")
+            if options == menu_options.TRANSFER.value:
+                transfer(logged_user)
+                print("Se ha realizado la transferencia con exito!")
+                back_to_menu = show_menu()
+                if back_to_menu == "N":
+                    sys.exit()
+                menu(logged_user,back_to_menu)
+            elif options == menu_options.RECIVE.value:
+                receive(logged_user)
+                print("Se ha realizado la recepción con exito!")
+                back_to_menu = show_menu()
+                if back_to_menu == "N":
+                    sys.exit()
+                menu(logged_user,back_to_menu)
+            elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:
+                show_singular_balance(logged_user)
+                back_to_menu = show_menu()
+                if back_to_menu == "N":
+                    sys.exit()
+                menu(logged_user,back_to_menu)
+            elif options == menu_options.GENERAL_BALANCE.value:
+                show_general_balance(logged_user)
+                back_to_menu = show_menu()
+                if back_to_menu == "N":
+                    sys.exit()
+                menu(logged_user,back_to_menu)
+            elif options == menu_options.HISTORYC_TRANSACTIONS.value:
+                transaction_history(logged_user)
+                back_to_menu = show_menu()
+                if back_to_menu == "N":
+                    sys.exit()
+                menu(logged_user,back_to_menu)
+            elif options == menu_options.EXIT_APP.value:
+                sys.exit()
             else:
-                request_options = False
-                
-        if options == menu_options.TRANSFER.value:
-            transfer(logged_user)
-            print("Se ha realizado la transferencia con exito!")
-            back_to_menu = show_menu()
-            if back_to_menu == "N":
-                sys.exit()
-            menu(logged_user,back_to_menu)
-        elif options == menu_options.RECIVE.value:
-            receive(logged_user)
-            print("Se ha realizado la recepción con exito!")
-            back_to_menu = show_menu()
-            if back_to_menu == "N":
-                sys.exit()
-            menu(logged_user,back_to_menu)
-        elif options == menu_options.CRYPTOCURRENCY_BALANCE.value:
-            show_singular_balance(logged_user)
-            back_to_menu = show_menu()
-            if back_to_menu == "N":
-                sys.exit()
-            menu(logged_user,back_to_menu)
-        elif options == menu_options.GENERAL_BALANCE.value:
-            show_general_balance(logged_user)
-            back_to_menu = show_menu()
-            if back_to_menu == "N":
-                sys.exit()
-            menu(logged_user,back_to_menu)
-        elif options == menu_options.HISTORYC_TRANSACTIONS.value:
-            transaction_history(logged_user)
-            back_to_menu = show_menu()
-            if back_to_menu == "N":
-                sys.exit()
-            menu(logged_user,back_to_menu)
-        else:
-            sys.exit()
+                print("La opcion ingresada no es valida.")
 
 
 def show_menu():

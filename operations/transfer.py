@@ -16,11 +16,15 @@ def transfer(logged_user):
     while not is_mount_valid:
          mount = input("Ingrese la cantidad de la moneda: ").replace(",",".",1)
          is_mount_valid = isa_float(mount) and currencie_amount >= float(mount) and currencie_amount > 0
+         if is_mount_valid == False:
+             print("Usted no posee la cantidad que desea tranferir.")
     is_id_valid = False
     while not is_id_valid:
-        id_recive = input("Ingrese el ID correspondiente al destinatario: ")
-        is_id_valid = validate_id(id_recive,logged_user)
-    transaction = Transaction(logged_user.id,id_recive,transfer_type,currency,float(mount),float(mount)*get_price(currency),datetime.now())
+        id_receive = input("Ingrese el ID correspondiente al destinatario: ")
+        is_id_valid = validate_id(id_receive,logged_user) and check_id_exist(id_receive)
+        if is_id_valid == False:
+            print("El id ingresado no es valido.")
+    transaction = Transaction(logged_user.id,id_receive,transfer_type,currency,float(mount),float(mount)*get_price(currency),datetime.now())
     new_transaction(transaction)
 
 def isa_float(mount):

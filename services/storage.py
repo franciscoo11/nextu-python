@@ -20,7 +20,7 @@ def line_balance_register(logged_user,symbol,amount):
 
 def user_registration(user_id,user_password):
     file=open(f'{folder}/users.txt', 'a+')
-    file.write(f'{user_id}|{user_password}\n')
+    file.write(f'USER:{user_id}|PW:{user_password}\n')
     file.close()
     
 def get_currencies_balance(user_id, symbol):
@@ -75,13 +75,11 @@ def last_userid():
     return x 
     
 def check_id_exist(user_id):
-    users_file = open(f'{folder}/users.txt', 'r')
-    found = False
-    for line in users_file:
-        if user_id in line:
-            found = True
-            break
-    return found
+
+    with open(f'{folder}/users.txt') as txt:
+        if f'USER:{user_id}' in txt.read():
+            return True
+    return False
 
 def check_id_pass(user_id,user_password):
     file = open(f'{folder}/users.txt', 'r')
@@ -90,7 +88,7 @@ def check_id_pass(user_id,user_password):
     lines = txt.splitlines()
     terms = txt.split("|")
     for line in lines:
-        if user_id + '|' + user_password == line:
+        if f'USER:{user_id}|PW:{user_password}' in line:
             return True
 
     return False
@@ -103,6 +101,3 @@ def create_filebalance(user_id):
     file = open(f'{folder}/user{user_id}/balance.txt', 'w+')
     file.close()
 
-def create_filehystoric(user_id):
-    file = open(f'{folder}/user{user_id}/hystoric_file.txt', 'w+')
-    file.close()

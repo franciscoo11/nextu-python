@@ -11,8 +11,8 @@ def menu_user_authentication():
     request_options = True
     while open_menu:
         print(f"""
-        {menu_user_options.REGISTER.value} \t\tREGISTRARSE
         {menu_user_options.START_SESION.value} \t\tINICIAR SESION
+        {menu_user_options.REGISTER.value} \t\tREGISTRARSE
         """)
         while request_options:
             options = int(input("Ingrese una opcion: "))
@@ -49,7 +49,6 @@ def register():
     logged_user = User(user_id)
     create_a_folder(logged_user.id)
     create_filebalance(logged_user.id)
-    create_filehystoric(logged_user.id)
     user_registration(user_id,user_password)
     if loggin_okey == True:
         print(f'Registro realizado con exito. Su id es: {user_id} y su password es {user_password}')
@@ -63,7 +62,7 @@ def validate_userid(user_id):
         return True
         
     except ValueError:
-        print("El dato ingresado no es un numero valido.")
+        print("Los datos ingresados no son validos.")
         return False
 
 def start_sesion():
@@ -71,7 +70,7 @@ def start_sesion():
     while not loggin_okey:
         user_id = input("Ingrese su codigo de usuario: ")
         user_password = input("Ingrese su clave mayor a 3 digitos: ").upper()
-        loggin_okey = validate_userid(user_id) and len(user_password) > 3 and check_id_pass(user_id,user_password)  
+        loggin_okey = validate_userid(user_id) and len(user_password) > 3 and check_id_pass(user_id,user_password) and len(user_id) > 0
         if loggin_okey == False:
             back_to_menu()
     logged_user = User(user_id)
